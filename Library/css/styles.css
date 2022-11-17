@@ -1,0 +1,61 @@
+body {
+  background-color: #1f1f1f;
+  justify-content: center;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 35px;
+  color: azure;
+}
+
+#newBookBtn-container {
+  display: flex;
+  justify-content: center;
+  color: azure;
+}
+
+#carousel-container {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+#library-container {
+  display: inline-flex;
+  background-color: #111111;
+  box-shadow: black;
+  flex-direction: row;
+  flex-wrap: wrap;
+  color: azure;
+  border-radius: 5px;
+  justify-content: center;
+  width: 50%;
+}
+
+.book {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #033fc2;
+  box-shadow: black;
+  color: azure;
+  border-radius: 5px;
+  width: 150px;
+  height: 75px;
+}
+
+.title {
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-size: large;
+  text-align: center;
+}
+
+.info {
+  font-size: medium;
+  text-align: center;
+}
