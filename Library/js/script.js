@@ -1,5 +1,13 @@
 const newBookBtn = document.querySelector("#newBookBtn");
-newBookBtn.addEventListener("click", addDummyBook);
+// newBookBtn.addEventListener("click", addDummyBook);
+newBookBtn.addEventListener("click", () => (formModal.style.display = "block"));
+
+const formModal = document.getElementById("form-container");
+const closeForm = document.getElementsByTagName("span")[0];
+closeForm.addEventListener("click", () => (formModal.style.display = "none"));
+
+const addBookBtn = document.querySelector('#addBtn');
+addBookBtn.addEventListener('click', addDummyBook);
 
 let library = [];
 
