@@ -73,14 +73,16 @@ h1 {
 .book {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  text-align: center;
+  /* justify-content: center; */
+  /* text-align: center; */
   background-color: #033fc2;
   box-shadow: black;
   color: azure;
   border-radius: 5px;
-  width: 150px;
-  height: 75px;
+  width: 200px;
+  height: 250px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .title {
@@ -97,13 +99,31 @@ h1 {
 
 .close {
   color: #aaa;
-  float: right;
+  text-align: right;
+  padding-right: 10px;
+  padding-top: 5px;
+  /* float: right; */
   font-size: 20px;
   font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.eye {
+  color: #aaa;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.eye:hover,
+.eye:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;

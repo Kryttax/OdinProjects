@@ -75,6 +75,7 @@ function addBookToLibrary(item) {
   const pagesDiv = document.createElement("div");
   const readDiv = document.createElement("div");
   const closeBtn = document.createElement("span");
+  const readStatusBtn = document.createElement("span");
 
   bookDiv.classList.add("book");
   bookDiv.setAttribute("id", library.indexOf(item));
@@ -98,7 +99,12 @@ function addBookToLibrary(item) {
   pagesDiv.classList.add("info");
   bookDiv.appendChild(pagesDiv);
 
-  readDiv.textContent = item.read;
+  readStatusBtn.classList.add("eye");
+  readStatusBtn.textContent = "eye";
+  readStatusBtn.addEventListener("click", () => changeReadStatus(item));
+  bookDiv.appendChild(readStatusBtn);
+
+  readDiv.textContent = item.read ? "Read" : "Not read";
   readDiv.classList.add("info");
   bookDiv.appendChild(readDiv);
 
@@ -107,6 +113,11 @@ function addBookToLibrary(item) {
 
 function removeBookFromLibrary(index) {
   library.splice(index, 1);
+  renderLibrary();
+}
+
+function changeReadStatus(item) {
+  item.read = !item.read;
   renderLibrary();
 }
 
