@@ -7,7 +7,6 @@ const closeForm = document.getElementById("close-form");
 closeForm.addEventListener("click", () => (formModal.style.display = "none"));
 
 const addBookBtn = document.querySelector("#addBtn");
-addBookBtn.addEventListener("click", addDummyBook);
 
 function validateForm() {
   let name = document.forms["form"]["title"].value;
@@ -16,8 +15,6 @@ function validateForm() {
     return false;
   }
 }
-
-let library = [];
 
 class Book {
   constructor(title, author, pages, read) {
@@ -28,97 +25,110 @@ class Book {
   }
 }
 
-function populateLibrary() {
-  library.push(new Book("Dune", "Herbert", "524", false));
-  library.push(new Book("Lastima", "Ebron", "24", false));
-  library.push(new Book("Kika", "Superb", "100", true));
-
-  renderLibrary();
-}
-
-function renderLibrary() {
-  const libContainer = document.getElementById("library-container");
-  const books = document.querySelectorAll(".book");
-  books.forEach((book) => libContainer.removeChild(book));
-
-  library.forEach((item) => {
-    addBookToLibrary(item);
-  });
-}
-
-let book;
-function addDummyBook() {
-  event.preventDefault();
-
-  for (const el of document
-    .getElementById("form")
-    .querySelectorAll("[required]")) {
-    if (!el.reportValidity()) {
-      return;
-    }
+class Library {
+  constructor() {
+    this.libraryArray = [];
   }
 
-  formModal.style.display = "none";
+  populateLibrary() {
+    this.libraryArray.push(new Book("Dune", "Herbert", "524", false));
+    this.libraryArray.push(new Book("Lastima", "Ebron", "24", false));
+    this.libraryArray.push(new Book("Kika", "Superb", "100", true));
 
-  book = new Book(form.title.value, form.author.value, form.pages.value, false);
-  library.push(book);
+    this.renderLibrary();
+  }
 
-  addBookToLibrary(book);
+  renderLibrary() {
+    const libContainer = document.getElementById("library-container");
+    const books = document.querySelectorAll(".book");
+    books.forEach((book) => libContainer.removeChild(book));
+
+    this.libraryArray.forEach((item) => {
+      this.addBookToLibrary(item);
+    });
+  }
+
+  addDummyBook() {
+    event.preventDefault();
+
+    for (const el of document
+      .getElementById("form")
+      .querySelectorAll("[required]")) {
+      if (!el.reportValidity()) {
+        return;
+      }
+    }
+
+    formModal.style.display = "none";
+
+    let book = new Book(
+      form.title.value,
+      form.author.value,
+      form.pages.value,
+      false
+    );
+    this.libraryArray.push(book);
+
+    this.addBookToLibrary(book);
+  }
+
+  addBookToLibrary(item) {
+    const libContainer = document.querySelector("#library-container");
+
+    const bookDiv = document.createElement("div");
+    const titleDiv = document.createElement("div");
+    const authorDiv = document.createElement("div");
+    const pagesDiv = document.createElement("div");
+    const readDiv = document.createElement("div");
+    const closeBtn = document.createElement("span");
+    const readStatusBtn = document.createElement("span");
+
+    bookDiv.classList.add("book");
+    bookDiv.setAttribute("id", this.libraryArray.indexOf(item));
+
+    closeBtn.classList.add("close");
+    closeBtn.textContent = "X";
+    closeBtn.addEventListener("click", () =>
+      this.removeBookFromLibrary(this.libraryArray.indexOf(item))
+    );
+    bookDiv.appendChild(closeBtn);
+
+    titleDiv.textContent = item.title;
+    titleDiv.classList.add("title");
+    bookDiv.appendChild(titleDiv);
+
+    authorDiv.textContent = item.author;
+    authorDiv.classList.add("info");
+    bookDiv.appendChild(authorDiv);
+
+    pagesDiv.textContent = item.pages;
+    pagesDiv.classList.add("info");
+    bookDiv.appendChild(pagesDiv);
+
+    readStatusBtn.classList.add("eye");
+    readStatusBtn.textContent = "eye";
+    readStatusBtn.addEventListener("click", () => this.changeReadStatus(item));
+    bookDiv.appendChild(readStatusBtn);
+
+    readDiv.textContent = item.read ? "Read" : "Not read";
+    readDiv.classList.add("info");
+    bookDiv.appendChild(readDiv);
+
+    libContainer.appendChild(bookDiv);
+  }
+
+  removeBookFromLibrary(index) {
+    this.libraryArray.splice(index, 1);
+    this.renderLibrary();
+  }
+
+  changeReadStatus(item) {
+    item.read = !item.read;
+    this.renderLibrary();
+  }
 }
 
-function addBookToLibrary(item) {
-  const libContainer = document.querySelector("#library-container");
+let library = new Library();
+library.populateLibrary();
 
-  const bookDiv = document.createElement("div");
-  const titleDiv = document.createElement("div");
-  const authorDiv = document.createElement("div");
-  const pagesDiv = document.createElement("div");
-  const readDiv = document.createElement("div");
-  const closeBtn = document.createElement("span");
-  const readStatusBtn = document.createElement("span");
-
-  bookDiv.classList.add("book");
-  bookDiv.setAttribute("id", library.indexOf(item));
-
-  closeBtn.classList.add("close");
-  closeBtn.textContent = "X";
-  closeBtn.addEventListener("click", () =>
-    removeBookFromLibrary(library.indexOf(item))
-  );
-  bookDiv.appendChild(closeBtn);
-
-  titleDiv.textContent = item.title;
-  titleDiv.classList.add("title");
-  bookDiv.appendChild(titleDiv);
-
-  authorDiv.textContent = item.author;
-  authorDiv.classList.add("info");
-  bookDiv.appendChild(authorDiv);
-
-  pagesDiv.textContent = item.pages;
-  pagesDiv.classList.add("info");
-  bookDiv.appendChild(pagesDiv);
-
-  readStatusBtn.classList.add("eye");
-  readStatusBtn.textContent = "eye";
-  readStatusBtn.addEventListener("click", () => changeReadStatus(item));
-  bookDiv.appendChild(readStatusBtn);
-
-  readDiv.textContent = item.read ? "Read" : "Not read";
-  readDiv.classList.add("info");
-  bookDiv.appendChild(readDiv);
-
-  libContainer.appendChild(bookDiv);
-}
-
-function removeBookFromLibrary(index) {
-  library.splice(index, 1);
-  renderLibrary();
-}
-
-function changeReadStatus(item) {
-  item.read = !item.read;
-  renderLibrary();
-}
-
-populateLibrary();
+addBookBtn.addEventListener("click", () => library.addDummyBook());
