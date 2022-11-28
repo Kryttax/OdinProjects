@@ -40,6 +40,39 @@ body,
   padding: 20px;
 }
 
+.centerDiv {
+  /* background-color: #eee; */
+  display: flex;
+  align-items: center;
+  align-self: center;
+  flex-direction: column;
+  width: 75em;
+}
+
+.itemsContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.drink {
+  display: flex;
+  flex-direction: row;
+  width: 30em;
+}
+
+.infoContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  align-self: center;
+  width: 25em;
+}
+
+.info {
+  font-size: clamp(5vh, 5vh, 10vw);
+  font-weight: bold;
+}
+
 .title {
   font-size: clamp(10vh, 50vh, 25vw);
 }
@@ -47,6 +80,19 @@ body,
 .subtitle {
   font-size: clamp(5vh, 5vh, 20vw);
   font-weight: bold;
+}
+
+.legend {
+  font-size: clamp(5vh, 5vh, 20vw);
+  font-weight: bold;
+  align-self: flex-end;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  align-self: center;
+  /* height: 35em; */
 }
 
 .tab {

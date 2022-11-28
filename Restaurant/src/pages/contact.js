@@ -16,17 +16,22 @@ const contactPage = () => {
   const location_ic = document.createElement("span");
   location_ic.classList.add("icon");
   divTitle.appendChild(location_ic);
-
   element.appendChild(divTitle);
 
+  const cDiv = document.createElement("div");
+  cDiv.classList.add("centerDiv");
+
   const bar_img = document.createElement("img");
+  bar_img.classList.add("img");
   bar_img.src = bar_ic;
+  cDiv.appendChild(bar_img);
 
   const subImg = document.createElement("span");
-  subImg.classList.add("subtitle");
+  subImg.classList.add("legend");
   subImg.textContent = "Choomba St.";
+  cDiv.appendChild(subImg);
 
-  element.appendChild(bar_img);
+  element.appendChild(cDiv);
 
   return element;
 };
