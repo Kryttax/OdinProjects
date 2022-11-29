@@ -7,6 +7,10 @@ body,
     "Lucida Sans", Arial, sans-serif;
 }
 
+ul {
+  list-style-type: square;
+}
+
 #main {
   align-self: center;
   display: flex;
@@ -43,28 +47,48 @@ body,
 .centerDiv {
   /* background-color: #eee; */
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   align-self: center;
   flex-direction: column;
   width: 75em;
+  margin-bottom: 10em;
 }
 
 .itemsContainer {
+  width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .drink {
   display: flex;
   flex-direction: row;
-  width: 30em;
+  /* width: 30em; */
 }
 
 .infoContainer {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   flex-direction: column;
+  flex-grow: 1;
+  /* align-self: center; */
+  width: 25em;
+}
+
+.imgContainer {
+  display: flex;
+  width: 15em;
+  height: 15em;
   align-self: center;
+  padding-left: 3em;
+  /* flex-grow: 1; */
+  /* height: 35em; */
+}
+
+.ingrContainer {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
   width: 25em;
 }
 
@@ -82,10 +106,30 @@ body,
   font-weight: bold;
 }
 
+.accent {
+  font-size: clamp(10vh, 20vh, 20vw);
+  font-weight: bold;
+}
+
 .legend {
   font-size: clamp(5vh, 5vh, 20vw);
   font-weight: bold;
   align-self: flex-end;
+}
+
+.ingredient {
+  font-size: clamp(3vh, 3vh, 3vw);
+}
+
+.quote {
+  font-size: clamp(3vh, 3vh, 3vw);
+  font-style: italic;
+  padding-left: 1em;
+  /* align-self: flex-end; */
+}
+
+.banner {
+  margin-bottom: 5em;
 }
 
 .img {
